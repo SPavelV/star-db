@@ -18,7 +18,8 @@ export default class RandomPlanet extends Component {
 
   constructor() {
     super();
-    this.updatePlanet();
+
+    setInterval(this.updatePlanet, 2500)
   }
 
   onPlanetLoaded = (planet) => {
@@ -36,8 +37,10 @@ export default class RandomPlanet extends Component {
     })
   }
 
-  updatePlanet() {
-    const id = Math.floor(Math.random()*20) + 2;
+  updatePlanet = () => {
+    console.log('---update:',);
+    
+    const id = Math.floor(Math.random()*25) + 3;
     // const id = 200000
     this.swapiService
       .getPlanet(id)
@@ -76,24 +79,24 @@ const PlanetView = ({planet}) => {
 
   return (
     <React.Fragment>
-       <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}/>
-        <div>
-          <h4>{name}</h4>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <span className="term">Population</span>
-              <span>{population}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Rotation Period</span>
-              <span>{rotationPeriod}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Diameter</span>
-              <span>{diameter}</span>
-            </li>
-          </ul>
-        </div>
+      <img className="planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}/>
+      <div>
+        <h4>{name}</h4>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">
+            <span className="term">Population</span>
+            <span>{population}</span>
+          </li>
+          <li className="list-group-item">
+            <span className="term">Rotation Period</span>
+            <span>{rotationPeriod}</span>
+          </li>
+          <li className="list-group-item">
+            <span className="term">Diameter</span>
+            <span>{diameter}</span>
+          </li>
+        </ul>
+      </div>
     </React.Fragment>
   )
 }

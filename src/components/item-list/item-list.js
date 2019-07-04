@@ -19,22 +19,13 @@ export default class ItemList extends Component {
     this.swapiService
       .getAllPeople()
       .then(this.onPeopleListLoaded)
-      // .catch(this.onError)
-      
+     
   }
 
   onPeopleListLoaded = (peopleList) => {
     this.setState({
-      peopleList,
-      loading: false,
-      error: false
-    })
-  }
-
-  onError = (err) => {
-    this.setState({
-      error: true,
-      loading: false
+      peopleList
+    
     })
   }
 
@@ -43,6 +34,7 @@ export default class ItemList extends Component {
       return (
         <li className="list-group-item"
             key={id}
+            onClick = {() => this.props.onItemSelected(id)}
             >
           {name}
         </li>

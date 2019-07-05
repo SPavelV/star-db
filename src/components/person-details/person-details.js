@@ -57,7 +57,6 @@ export default class PersonDetails extends Component {
         .catch(this.onError)
   } 
 
-
   render() {
     const {person, loading, error} = this.state
 

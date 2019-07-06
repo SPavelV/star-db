@@ -106,7 +106,7 @@ const PersonView = ({person}) => {
             <span className="term">Eye Color</span>
             <span>{eyeColor}</span>
           </li>
-          <li>
+          <li className="list-group-item">
             <ErrorButton/>
           </li>
         </ul>

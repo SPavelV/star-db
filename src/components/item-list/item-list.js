@@ -11,13 +11,13 @@ export default class ItemList extends Component {
 
   state = {
     peopleList: null,
-    lading: true,
+    loading: true,
     error: false
   }
 
   componentDidMount() {
-    this.swapiService
-      .getAllPeople()
+    const {getData} = this.props
+    getData()
       .then(this.onPeopleListLoaded)
      
   }
@@ -25,7 +25,6 @@ export default class ItemList extends Component {
   onPeopleListLoaded = (peopleList) => {
     this.setState({
       peopleList
-    
     })
   }
 

@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner/'
 import ErrorIndicator from '../error-indicator'
-import './person-details.css';
-import { throwStatement } from '@babel/types';
+import './person-details.css'
+import ErrorButton from '../error-button'
+import { throwStatement } from '@babel/types'
 
 export default class PersonDetails extends Component {
 
@@ -104,6 +105,9 @@ const PersonView = ({person}) => {
           <li className="list-group-item">
             <span className="term">Eye Color</span>
             <span>{eyeColor}</span>
+          </li>
+          <li className="list-group-item">
+            <ErrorButton/>
           </li>
         </ul>
       </div>

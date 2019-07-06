@@ -1,3 +1,20 @@
-.toggle-planet {
+.stardb-app {
+  padding: 0 20px;
+}
+
+.button-row {
+  margin: 0 0 1rem 0;
+}
+
+.button-row button {
+  margin-right: 1rem;
+}
+
+
+.stardb-app .row {
   margin-bottom: 1rem;
+}
+
+.toggle-planet {
+  margin-right: 20px;
 }

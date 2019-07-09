@@ -4,12 +4,15 @@ import Header from '../header'
 import RandomPlanet from '../random-planet'
 import ErrorButton from '../error-button'
 import ErrorIndicator from '../error-indicator'
-import PeoplePage from '../people-page/people-page';
+import PeoplePage from '../people-page';
 import ItemList from '../item-list'
-import PersonDetails from '../person-details'
+import ItemDetails from '../item-details'
+import Row from '../row'
+
 import SwapiService from '../../services/swapi-service'
 
 import './app.css'
+import ErrorBoundry from '../error-boundry';
 
 export default class App extends React.Component {
 
@@ -17,8 +20,6 @@ export default class App extends React.Component {
 
   state = {
     showRandomPlanet: true,
-    hasError: false,
-    
   }
 
   toggleRandomPlante = () => {
@@ -29,37 +30,30 @@ export default class App extends React.Component {
     })
   }
 
-  componentDidCatch() {
-    console.log('---componentDidCatch:',)
-    this.setState({ hasError: true })
-  }
 
   render() {
-    if(this.state.hasError) {
-      return <ErrorIndicator/>
-    }
-
+    
     const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
+    const personDetails = (
+      <ItemDetails itemId={11}/>
+    )
+
+    const starShiptDetails = (
+      <ItemDetails itemId={5}/>
+    )
+
     return (
-      <div className="stardb-app">
-        <Header />
-        { planet }
-        
-        <div className="row mb2">
-          <div className="col">
-          <button
-            className="toggle-planet btn btn-warning bth-lg"
-            onClick={this.toggleRandomPlante}>
-              Toggle Random Planet
-          </button>
-          <ErrorButton/>
+      <ErrorBoundry>
+        <div className="stardb-app">
+          <Header />
+          <Row
+            left={personDetails}
+            right={starShiptDetails}
+          />
+          
         </div>
-        </div>
-        
-        <PeoplePage/>
-        
-      </div>
+      </ErrorBoundry>
     )
   }
  

@@ -5,7 +5,17 @@ import Spinner from '../spinner'
 import ErrorIndicator from '../error-indicator'
 import './item-details.css'
 import ErrorButton from '../error-button'
+import { resolvePtr } from 'dns';
 
+const Record = ({item, field, label}) => {
+  return (
+    <li className="list-group-item">
+      <span className="term">{label}</span>
+      <span>{field}</span>
+    </li>
+  )
+}
+export {Record}
 
 export default class ItemDetails extends Component {
 
@@ -47,7 +57,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem(){
-    const { itemId, getData, getImageUrl } = this.props;
+    const { itemId, getData } = this.props;
     if(!itemId) {
       return;
     }
@@ -68,7 +78,7 @@ export default class ItemDetails extends Component {
     
     const errorMessage = error ?  <ErrorIndicator/> : null
     const spinner = loading ? <Spinner/> : null
-    const content = hasData ? <ItemView item ={item} image={image}/> : null
+    const content = hasData ? <ItemView item ={item} image={image} childRen={this.props.children}/> : null
     
     return (
       <div className="item-details card">
@@ -80,7 +90,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({item, image}) => {
+const ItemView = ({item, image, childRen}) => {
   const {
     id,
     name,
@@ -97,21 +107,11 @@ const ItemView = ({item, image}) => {
       <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Birth Year</span>
-            <span>{birthYear}</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Eye Color</span>
-            <span>{eyeColor}</span>
-          </li>
-          <li className="list-group-item">
-            <ErrorButton/>
-          </li>
+          {
+            React.Children.map(childRen, (child,idx) => {
+              return <li>{idx}</li>;
+            })
+          }
         </ul>
       </div>
     </React.Fragment>

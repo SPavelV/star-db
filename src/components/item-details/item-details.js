@@ -13,6 +13,7 @@ export default class ItemDetails extends Component {
 
   state = {
     item:null,
+    image: null,
     loading: true,
     error: false
   }
@@ -28,14 +29,17 @@ export default class ItemDetails extends Component {
   }
 
   onItemLoaded = (item) => {
+    const {getImageUrl } = this.props;
     this.setState({ 
       item,
+      image: getImageUrl(item),
       loading: false,
       error: false
     })
   }
 
   onError = (err) => {
+    console.log('---error:',err);
     this.setState({
       error: true,
       loading: false
@@ -43,7 +47,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem(){
-    const { itemId } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
     if(!itemId) {
       return;
     }
@@ -52,20 +56,19 @@ export default class ItemDetails extends Component {
       loading: true
     })
     
-    this.swapiService
-        .getPerson(itemId)
+    getData(itemId)
         .then(this.onItemLoaded)
         .catch(this.onError)
   } 
 
   render() {
-    const {item, loading, error} = this.state
+    const {item, loading, error,image} = this.state
 
     const hasData = !(loading || error)
     
     const errorMessage = error ?  <ErrorIndicator/> : null
     const spinner = loading ? <Spinner/> : null
-    const content = hasData ? <ItemView item ={item}/> : null
+    const content = hasData ? <ItemView item ={item} image={image}/> : null
     
     return (
       <div className="item-details card">
@@ -77,7 +80,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({item}) => {
+const ItemView = ({item, image}) => {
   const {
     id,
     name,
@@ -89,7 +92,7 @@ const ItemView = ({item}) => {
   return (
     <React.Fragment>
       <img className="item-image"
-      src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}/>
+      src={image}/>
 
       <div className="card-body">
         <h4>{name}</h4>

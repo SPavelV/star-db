@@ -35,12 +35,20 @@ export default class App extends React.Component {
     
     const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
+    const {getPerson, getStarship,getPersonImage,getStarshipImage} = this.swapiService;
+
     const personDetails = (
-      <ItemDetails itemId={11}/>
+      <ItemDetails 
+        getData={getPerson} 
+        itemId={11}
+        getImageUrl={getPersonImage}/>
     )
 
     const starShiptDetails = (
-      <ItemDetails itemId={5}/>
+      <ItemDetails 
+        getData={getStarship} 
+        itemId={5}
+        getImageUrl={getStarshipImage}/>
     )
 
     return (

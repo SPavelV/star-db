@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../header'
 import RandomPlanet from '../random-planet'
 import ItemDetails,{Record} from '../item-details/item-details'
+import ItemList from '../item-list'
 import Row from '../row'
 
 
@@ -32,7 +33,7 @@ export default class App extends React.Component {
     
     const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
-    const {getPerson, getStarship,getPersonImage,getStarshipImage} = this.swapiService;
+    const {getAllPeople, getAllPlanets, getPerson, getStarship,getPersonImage,getStarshipImage} = this.swapiService;
 
     const personDetails = (
       <ItemDetails 
@@ -61,11 +62,27 @@ export default class App extends React.Component {
       <ErrorBoundry>
         <div className="stardb-app">
           <Header />
-          <Row
+          
+          {/* <Row
             left={personDetails}
             right={starShiptDetails}
-          />
-          
+          /> */}
+
+          <ItemList 
+            getData = {getAllPeople}
+            onItemSelected={() => {}}>
+              { ({name}) => <span>{name}</span>}
+          </ItemList>
+
+          <ItemList 
+            getData = {getAllPlanets}
+            onItemSelected={() => {}}>
+              { ({name}) => <span>{name}</span>}
+          </ItemList>
+
+
+
+        
         </div>
       </ErrorBoundry>
     )

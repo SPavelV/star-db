@@ -11,7 +11,7 @@ const Record = ({item, field, label}) => {
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
-      <span>{field}</span>
+      <span>{item[field]}</span>
     </li>
   )
 }
@@ -109,7 +109,7 @@ const ItemView = ({item, image, childRen}) => {
         <ul className="list-group list-group-flush">
           {
             React.Children.map(childRen, (child,idx) => {
-              return <li>{idx}</li>;
+              return React.cloneElement(child, { item });
             })
           }
         </ul>

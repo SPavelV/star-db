@@ -4,8 +4,6 @@ import SwapiService from '../../services/swapi-service'
 import Spinner from '../spinner'
 import ErrorIndicator from '../error-indicator'
 import './item-details.css'
-import ErrorButton from '../error-button'
-import { resolvePtr } from 'dns';
 
 const Record = ({item, field, label}) => {
   return (
@@ -39,7 +37,7 @@ export default class ItemDetails extends Component {
   }
 
   onItemLoaded = (item) => {
-    const {getImageUrl } = this.props;
+    const {getImageUrl} = this.props;
     this.setState({ 
       item,
       image: getImageUrl(item),
@@ -92,17 +90,16 @@ export default class ItemDetails extends Component {
 
 const ItemView = ({item, image, childRen}) => {
   const {
-    id,
-    name,
-    gender,
-    birthYear,
-    eyeColor,
+    name
   } = item;
 
   return (
     <React.Fragment>
-      <img className="item-image"
-      src={image}/>
+      <img 
+        className="item-image"
+        src={image}
+        alt={name}
+      />
 
       <div className="card-body">
         <h4>{name}</h4>

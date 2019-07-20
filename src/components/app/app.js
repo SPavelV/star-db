@@ -2,15 +2,21 @@ import React from 'react';
 
 import Header from '../header'
 import RandomPlanet from '../random-planet'
+import ErrorBoundry from '../error-boundry';
+
 import ItemDetails,{Record} from '../item-details/item-details'
-import ItemList from '../item-list'
-import Row from '../row'
-
-
 import SwapiService from '../../services/swapi-service'
 
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails,
+  PersonList,
+  PlanetList,
+  StarshipList
+} from '../sw-components'
+
 import './app.css'
-import ErrorBoundry from '../error-boundry';
 
 export default class App extends React.Component {
 
@@ -28,7 +34,6 @@ export default class App extends React.Component {
     })
   }
 
-
   render() {
     
     const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
@@ -40,10 +45,8 @@ export default class App extends React.Component {
         getData={getPerson} 
         itemId={11}
         getImageUrl={getPersonImage}>
-          
           <Record field="gender" label="Gender"/>
           <Record field="eyeColor" label="Eye Color"/>
-
       </ItemDetails>
     )
 
@@ -52,6 +55,7 @@ export default class App extends React.Component {
         getData={getStarship} 
         itemId={5}
         getImageUrl={getStarshipImage}>
+          
           <Record field="model" label="Model"/>
           <Record field="length" label="Length"/>
           <Record field="costInCredits" label="Cost"/>
@@ -62,25 +66,18 @@ export default class App extends React.Component {
       <ErrorBoundry>
         <div className="stardb-app">
           <Header />
-          
-          {/* <Row
-            left={personDetails}
-            right={starShiptDetails}
-          /> */}
-
-          <ItemList 
-            getData = {getAllPeople}
-            onItemSelected={() => {}}>
-              { ({name}) => <span>{name}</span>}
-          </ItemList>
-
-          <ItemList 
-            getData = {getAllPlanets}
-            onItemSelected={() => {}}>
-              { ({name}) => <span>{name}</span>}
-          </ItemList>
-
-
+        
+          <PersonList >
+            { ({name}) => <span>{name}</span> }
+          </PersonList>
+        
+          <StarshipList>
+            { ({name}) => <span>{name}</span> }
+          </StarshipList>
+        
+          <PlanetList >
+            { ({name}) => <span>{name}</span> }
+          </PlanetList>
 
         
         </div>

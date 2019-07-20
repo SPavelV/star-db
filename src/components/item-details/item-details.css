@@ -3,6 +3,7 @@
   /* margin-top: 1rem; */
   flex-direction: row;
   padding: 1rem;
+  margin-bottom: 20px;
 }
 
 .item-details .item-image {

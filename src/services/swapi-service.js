@@ -52,7 +52,7 @@ export default class SwapiService {
   } 
 
   getPlanetImage = ({id}) => {
-    return `${this._imgaeBase}/plantets/${id}.jpg`
+    return `${this._imgaeBase}/planets/${id}.jpg`
   } 
 
   _extractId(item) {

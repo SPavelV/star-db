@@ -42,7 +42,7 @@ export default class App extends React.Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value = {this. swapiService}>
+        <SwapiServiceProvider value = {this.swapiService}>
           <div className="stardb-app">
             <Header />
 

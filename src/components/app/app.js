@@ -50,7 +50,7 @@ export default class App extends React.Component {
 
             <PlanetDetails itemId={2}/>
 
-            <StarshipDetails itemId={5}/>
+            <StarshipDetails itemId={7}/>
           
             <PersonList/>
           

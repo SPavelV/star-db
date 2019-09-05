@@ -22,7 +22,7 @@ import './app.css'
 
 export default class App extends React.Component {
 
-  swapiService = new  DummySwapiService()
+  swapiService = new DummySwapiService()
 
   state = {
     showRandomPlanet: true,
@@ -50,7 +50,7 @@ export default class App extends React.Component {
 
             <PlanetDetails itemId={2}/>
 
-            <StarshipDetails itemId={7}/>
+            <StarshipDetails itemId={5}/>
           
             <PersonList/>
           

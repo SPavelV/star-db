@@ -22,10 +22,23 @@ import './app.css'
 
 export default class App extends React.Component {
 
-  swapiService = new DummySwapiService()
-
   state = {
     showRandomPlanet: true,
+    swapiService: new DummySwapiService()
+
+  }
+
+  onServiceChange = () => {
+    console.log('Change context value');
+    this.setState(({ swapiService }) => {
+      const Service = swapiService instanceof SwapiService ?
+                        DummySwapiService : SwapiService;
+      console.log('switched to', Service.name);
+
+      return { 
+        swapiService: new Service()
+      }
+    })
   }
 
   toggleRandomPlante = () => {
@@ -42,9 +55,9 @@ export default class App extends React.Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value = {this.swapiService}>
+        <SwapiServiceProvider value = {this.state.swapiService}>
           <div className="stardb-app">
-            <Header />
+            <Header onServiceChange={this.onServiceChange} />
 
             <PersonDetails itemId={11}/>
 

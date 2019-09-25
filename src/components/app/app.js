@@ -51,8 +51,8 @@ export default class App extends React.Component {
               <Route path="/people" 
                      render={() => <h2>People</h2>} 
                      exact/>
-              <Route path="/people" exact component={PeoplePage} />
-              <Route path="/planets" exact component={PlanetsPage} />
+              <Route path="/people/:id?" component={PeoplePage} />
+              <Route path="/planets" component={PlanetsPage} />
               <Route path="/starships" exact component={StarshipsPage} />
               <Route path="/starships/:id" 
                      render={({match}) => {
